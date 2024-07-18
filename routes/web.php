@@ -1,11 +1,10 @@
 <?php
-
+ 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\registrationController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\Usercontroller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +22,10 @@ Route::get('/dashboard', function(){
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
 
-// Route::post('/edit/edit', [Usercontroller::class, 'update'])->name('update.update')->middleware('auth');
+Route::get('/logout', function(){
+    Auth::logout();
+    return to_route('login.index');
+})->name('logOut');
 
 Route::get('/registration', [registrationController::class, 'create'])->name('registration.create');
 Route::post('/registration', [registrationController::class, 'store'])->name('registration.store');
@@ -41,9 +43,26 @@ Route::delete('/task/{id}',[Usercontroller::class, 'destroy'] )->name('delete');
 Route::get('/user/profile',[Usercontroller::class, 'getUser'] )->name('user_profile.getUser');
 Route::post('/user/profile/{id}',[Usercontroller::class, 'updateUserProfile'] )->name('user_profile_edit');
 Route::post('/user/password/reset/{id}',[Usercontroller::class, 'resetPassword'] )->name('reset_password');
+/**
+ * route to show password reset link request form. 
+ * 
+ */
 
+Route::get('/forgot-password',[Usercontroller::class, 'showEmailForForgotPassword'] )->name('password.request');
+/**
+ *route handle forgot-password form submission.
+ */
+Route::post('/forgot-password', [Usercontroller::class, 'forgotPasswordEmailSubmissionHandler'])->name('password.email');
 
+/**
+ * password reset form
+ * this is the link that will be sent to the user 
+ */
+Route::get('/forgot-password/{token}', [Usercontroller::class, 'showForgotPasswordForm'])->name('password.reset');
 
+/**
+ * routehandling the form link sent to the user
+ *
+ */
 
-
-
+ Route::post('/reset-password', [Usercontroller::class, 'forgotPassword'])->name('password.update');

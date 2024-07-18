@@ -4,7 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * this model class add, remove and retrieve user_id and task_id to/from checkboxes database.
+ * it is to retrieve the active and completed task.
+ * this method is called when user check and uncheck the checkboxes.
+ * @param $user_id,  $task_id
+ * 
+ */
 class Checkbox extends Model
 {
     use HasFactory;
@@ -12,8 +20,9 @@ class Checkbox extends Model
 
     public function add($isChecked):void
     {
-        //add user id to checkbox also
-        Checkbox::create(['task_id'=>$isChecked]);
+        $user = Auth::user();
+    
+        Checkbox::create(['task_id'=>$isChecked, 'user_id'=>$user->id]);
     }
 
     public function remove($uncheck):void
@@ -23,8 +32,9 @@ class Checkbox extends Model
 
     public function retrieveCheck()
     {
-        //retrive user id and let start from there
-
-      return  Checkbox::all('task_id')->pluck('task_id');
+        
+        $user = Auth::user();
+    //   return  Checkbox::all('task_id')->pluck('task_id'); //initial
+      return  Checkbox::where('user_id', $user->id )->pluck('task_id'); //modification
     }
 }

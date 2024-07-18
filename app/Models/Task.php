@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Checkbox;
 
-
+/**
+ * this model class create task, retrieve all task, showcompleted task, show active task and update task.
+ * @method  the name of the method depict exactly what they do
+ *                    
+ */
 class Task extends Model
 {
     use HasFactory;
@@ -38,7 +42,8 @@ class Task extends Model
         
         
           $completedTasks = Task::whereIn('id', $isChecked)->simplePaginate(5);
-          return $completedTasks;
+          return $completedTasks; 
+        
     }
     
     public function showActiveTasks()
@@ -51,6 +56,7 @@ class Task extends Model
 
         $actives =  Task::where('user_id', $user_id)->get();
         return $actives->except($isChecked);
+        
     }
         
 

@@ -30,10 +30,28 @@ class loginController extends Controller
 
         $request->session()->regenerate();
 
+        session([
+            
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+            
+        ]);
+
         return redirect()->intended('dashboard');
        }
+        
+       
+               
 
-       return back()->withErrors('check your inputs detail');
+
+       return back()->with([
+        'error'=>'check your inputs detail, password or email is incorrect', 
+        'email'=>$credentials['email'],
+        'password'=>$credentials['password']
+        
+    ]);
+    
      }
    
+     
 }

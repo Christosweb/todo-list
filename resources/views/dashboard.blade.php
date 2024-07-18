@@ -13,7 +13,10 @@
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow p-4 d-flex">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 me-auto" href="#">TO DO APP</a>
-        <a class="text-light text-decoration-none" href="{{ route('user_profile.getUser') }}">PROFILE</a>
+        <div class="d-flex flex-column">
+            <a class="text-light text-decoration-none" href="{{ route('user_profile.getUser') }}">PROFILE</a>
+            <a class="text-light text-decoration-none" href="{{ route('logOut') }}">Log out</a>
+        </div>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">

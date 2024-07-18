@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-    <title>dashboard</title>
+    <title>All Tasks</title>
 </head>
 
 <body>
@@ -14,6 +14,10 @@
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow p-4">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">TO DO APP</a>
+        <div class="d-flex flex-column">
+            <a class="text-light text-decoration-none" href="{{ route('user_profile.getUser') }}">PROFILE</a>
+            <a class="text-light text-decoration-none" href="{{ route('logOut') }}">Log out</a>
+        </div>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -65,16 +69,13 @@
                 <div class="card bg-info mt-3">
                     <div class="card-body">
                         <div class="wrapper d-flex ">
-                        <input class="form-check-input me-2"
-                     type="checkbox"
-                     name="checkbox"
-                     id="checkbox"
-                     value="{{$task->id}}"
-                     {{$isChecked->contains($task->id)?'checked':null}}
-                        >
-                    <p class="me-auto text-capitalize">{{$task->todo}}</p>
-                    <button class="btn btn-warning me-2 edit" ><a class="link-dark text-decoration-none" href="{{route('edit_tasks.getEdit', $task->id)}}">Edit</a></button>
-                    <button class="btn btn-danger delete" data-delete="{{route('delete', $task->id)}}">Delete</button>
+                            <input class="form-check-input me-2" type="checkbox" name="checkbox" id="checkbox"
+                                value="{{$task->id}}" {{$isChecked->contains($task->id)?'checked':null}}>
+                            <p class="me-auto text-capitalize">{{$task->todo}}</p>
+                            <button class="btn btn-warning me-2 edit"><a class="link-dark text-decoration-none"
+                                    href="{{route('edit_tasks.getEdit', $task->id)}}">Edit</a></button>
+                            <button class="btn btn-danger delete"
+                                data-delete="{{route('delete', $task->id)}}">Delete</button>
                         </div>
                     </div>
                 </div>

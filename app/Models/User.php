@@ -9,11 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Auth\Passwords\CanResetPassword as passwordReset;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanResetPassword
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, passwordReset;
 
     /**
      * The attributes that are mass assignable.
@@ -46,13 +48,17 @@ class User extends Authenticatable
         $user = Auth::user();
         return $user;
     }
-
+/**
+ * this method update the registered user
+ */
     public function isUpdate($credentials, $id)
     {
        return User::where('id', $id)
                   ->update($credentials);
     }
-
+/**
+ * this method reset the user password
+ */
     public function isPasswordReset($id, $credentials)
     {
         return User::where('id', $id)

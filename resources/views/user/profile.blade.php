@@ -23,57 +23,67 @@
 
     <div class="container-fluid">
         <div class="row">
-                     <div>
-                        <p>{{session('status')? session('status'):null}}</p>
-                     </div>
-                <main class="form-signin w-75 m-auto">
-                    <form class="d-flex flex-column" method="post" action="{{route('user_profile_edit', [$user->id])}}">
-                        @csrf
-                        <h1 class="h3 mb-3 fw-normal">Profile</h1>
 
-                        <div class="form-control mb-3">
-                            <label class="text-capitalize" for="firstname">first name</label>
-                            <input type="text" class="form-control" name="firstname" id="floatingInput" value="{{ $user->firstname }}" placeholder="">
-                        </div>
-                        <div class="form-control mb-3">
+            <div class="card bg-primary w-50 mt-5 mx-auto {{session('status')?'d-flex':'d-none'}} " id="card" >
+                <p class="card-body text-center text-light"> {{session('status')? session('status'):null}}</p>
+            </div>
+            <main class="form-signin w-75 m-auto">
+                <form class="d-flex flex-column" method="post" action="{{route('user_profile_edit', [$user->id])}}">
+                    @csrf
+                    <h1 class="h3 mb-3 fw-normal">Profile</h1>
+
+                    <div class="form-control mb-3">
+                        <label class="text-capitalize" for="firstname">first name</label>
+                        <input type="text" class="form-control" name="firstname" id="floatingfirstname"
+                            value="{{ $user->firstname }}" placeholder="">
+                    </div>
+                    <div class="form-control mb-3">
                         <label class="text-capitalize" for="lasttname">last name</label>
-                            <input type="text" class="form-control" name="lastname" id="floatingPassword" value="{{ $user->lastname }}" placeholder="">
-                        </div>
-                        <div class="form-control mb-3">
+                        <input type="text" class="form-control" name="lastname" id="floatinglastname"
+                            value="{{ $user->lastname }}" placeholder="">
+                    </div>
+                    <div class="form-control mb-3">
                         <label class="text-capitalize" for="email">email</label>
-                            <input type="email" class="form-control" name="email" id="floatingPassword" value="{{ $user->email }}" placeholder="">
-                        </div>
-                        <div class="form-control mb-3">
+                        <input type="email" class="form-control" name="email" id="floatingemail"
+                            value="{{ $user->email }}" placeholder="">
+                    </div>
+                    <div class="form-control mb-3">
                         <label class="text-capitalize" for="age">age</label>
-                            <input type="number" class="form-control"  name="age" id="floatingPassword" value="{{ $user->age }}" placeholder="">
-                        </div>
-                        <div class="form-control mb-3">
+                        <input type="number" class="form-control" name="age" id="floatingage" value="{{ $user->age }}"
+                            placeholder="">
+                    </div>
+                    <div class="form-control mb-3">
                         <label class="text-capitalize" for="phone">phone</label>
-                            <input type="number" class="form-control"  name="phone" id="floatingPassword" value="{{ $user->phone }}" placeholder="">
-                        </div>
+                        <input type="number" class="form-control" name="phone" id="floatingphone"
+                            value="{{ $user->phone }}" placeholder="">
+                    </div>
 
-                        <button class="btn btn-lg btn-primary align-self-end" type="submit" data-edit-profile="{{route('user_profile_edit', [$user->id])}}">Edit</button>
-                        
-                    </form>
-                    <hr>
+                    <button class="btn btn-lg btn-primary align-self-end" type="submit"
+                        data-edit-profile="{{route('user_profile_edit', [$user->id])}}">Edit</button>
 
-                    <form class="d-flex flex-column" method="post" action="{{route('reset_password', [$user->id])}}">
-                        @csrf
-                        <h1 class="h3 mb-3 fw-normal">Reset/Change Password</h1>
+                </form>
+                <hr>
 
-                        <div class="form-control mb-3">
+                <form class="d-flex flex-column" method="post" action="{{route('reset_password', [$user->id])}}">
+                    @csrf
+                    <h1 class="h3 mb-3 fw-normal">Reset/Change Password</h1>
+
+                    <div class="form-control mb-3">
                         <label class="text-capitalize" for="email">email</label>
-                            <input type="email" class="form-control" name="email" id="floatingPassword" value="{{ $user->email }}" placeholder="">
-                        </div>
-                        <div class="form-control mb-3">
+                        <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}"
+                            placeholder="">
+                    </div>
+                    <div class="form-control mb-3">
                         <label class="text-capitalize" for="password">password</label>
-                            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder=" enter new password...">
-                        </div>
-                
-                        <button class="btn btn-lg btn-primary align-self-end" type="submit" data-edit-profile="{{route('reset_password', [$user->id])}}">Rset Password</button>
-                        
-                    </form>
-                </main>
+                        <input type="password" class="form-control" name="password" id="Password"
+                            placeholder=" enter new password...">
+                    </div>
+
+                    <button class="btn btn-lg btn-primary align-self-end" type="submit"
+                        data-edit-profile="{{route('reset_password', [$user->id])}}">Rset Password</button>
+
+                </form>
+            </main>
         </div>
     </div>
 
