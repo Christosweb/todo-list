@@ -173,10 +173,10 @@ function updateTask()
 
 /**
  * 
- * delete tasks functionality
+ * delete tasks warning functionality
  */
 
-function deleteTask()
+function deleteTaskWarning()
 {
    const delete_btn = document.querySelectorAll(".delete")
    if(!delete_btn){
@@ -195,12 +195,32 @@ function deleteTask()
    const xhr = new XMLHttpRequest();
           xhr.onload = function()
           {
-            //  console.log(this.responseText)
-            //  const res = JSON.parse(this.responseText);
-            window.location.reload();
+            
+             const res = JSON.parse(this.responseText);
+            //  console.log(res)
+             if(!res.warning){
+               return false
+             }
+
+             document.getElementById("modal").style.display='block' ;
+             document.getElementById('status').innerText='warning' ;
+             document.getElementById('message').innerText=res.warning ;
+             document.getElementById('delete').setAttribute('delete', res.delete_id) ;
+             document.getElementById("close").addEventListener('click',function()
+          {
+            document.getElementById("modal").style.display='none' ;
+          })
+             document.getElementById("delete").addEventListener('click',function(e)
+          {
+            // send detete ajax request here
+            const task_to_delete  = e.target.getAttribute('delete')
+            deleteTask(routeUrl, csrf_token, task_to_delete)
+          })
+             
+      
           }
           
-          xhr.open('DELETE', routeUrl, true);
+          xhr.open('POST', routeUrl, true);
           xhr.setRequestHeader('Content-Type', 'application\json');
 
           
@@ -213,5 +233,25 @@ function deleteTask()
    });
 
    
-}deleteTask();
+}deleteTaskWarning();
 
+/**
+ * delete task ajax
+ */
+
+function deleteTask(routeUrl, csrf_token, task_to_delete)
+{
+   const xhr = new XMLHttpRequest();
+          xhr.onload = function()
+          {
+             window.location.reload();
+          }
+          
+          xhr.open('DELETE', routeUrl, true);
+          xhr.setRequestHeader('Content-Type', 'application\json');
+
+          
+          xhr.setRequestHeader('X_CSRF-TOKEN', csrf_token);
+
+          xhr.send(JSON.stringify(task_to_delete));
+}

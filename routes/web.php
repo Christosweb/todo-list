@@ -39,6 +39,7 @@ Route::get('/complete', [Usercontroller::class, 'completed'])->name('completed_t
 Route::get('/active', [Usercontroller::class, 'active'])->name('active_tasks.active')->middleware('auth');
 Route::get('/edit/{id}', [Usercontroller::class, 'getEdit'])->name('edit_tasks.getEdit')->middleware('auth');
 Route::patch('/edit{id}', [Usercontroller::class, 'update'])->name('update.update')->middleware('auth');
+Route::post('/task/{id}',[Usercontroller::class, 'destroyWarning'] )->name('deleteWarning');
 Route::delete('/task/{id}',[Usercontroller::class, 'destroy'] )->name('delete');
 Route::get('/user/profile',[Usercontroller::class, 'getUser'] )->name('user_profile.getUser');
 Route::post('/user/profile/{id}',[Usercontroller::class, 'updateUserProfile'] )->name('user_profile_edit');

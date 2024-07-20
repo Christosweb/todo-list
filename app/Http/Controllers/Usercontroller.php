@@ -123,18 +123,20 @@ class Usercontroller extends Controller
         }
     }
     /**
-     * this method delete task
+     * this method warn you if you want to delete task 
      */
-    public function destroy($id, Task $task)
+    public function destroyWarning($id, Task $task )
     {
-       $delete = $task::destroy($id);
+         return $task->deleteTaskWarning($id);
+    }
 
-        if($delete){
-            return response()->json([
-                'status'=> 'success',
-                'message'=> 'task deleted successfully.'
-            ]);
-        }
+    /**
+     * delete task 
+     */
+    public function destroy($id, Request $request, Task $task)
+    {
+        $request = json_decode($request->getContent());
+           return $task->deleteTask($id, $request);
     }
     /**
      * this method get the authenticated user by calling the create method of the user instance.

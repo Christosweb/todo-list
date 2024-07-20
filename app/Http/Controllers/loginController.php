@@ -30,12 +30,7 @@ class loginController extends Controller
 
         $request->session()->regenerate();
 
-        session([
-            
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
-            
-        ]);
+        
 
         return redirect()->intended('dashboard');
        }

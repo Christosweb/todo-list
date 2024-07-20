@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Checkbox;
 
 /**
- * this model class create task, retrieve all task, showcompleted task, show active task and update task.
+ * this model class create task, retrieve all task, showcompleted task, show active task, update task delete task.
  * @method  the name of the method depict exactly what they do
  *                    
  */
@@ -64,5 +64,20 @@ class Task extends Model
     {
        $task = Task::find($id);
        return $task;
+    }
+
+    public function deleteTaskWarning($id)
+    {
+        return response()->json([
+             'warning' => 'are you sure you want to delete this task, once deleted it can not be undone ?',
+             'delete_id' => $id
+        ]);
+    }
+
+    public function deleteTask($id, $request)
+    {
+        if($request === $id){
+            Task::destroy($request);
+          }
     }
 }

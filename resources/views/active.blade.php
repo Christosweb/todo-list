@@ -65,6 +65,24 @@
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+                                 <!-- modal -->
+ <div class="modal"  id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="status"></h5>
+      </div>
+      <div class="modal-body">
+        <p class="text-capitalize"  id="message"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  id="delete">YES</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+         <!-- modal end -->
                 @foreach ($actives as $active)
                 <div class="card bg-info mt-3">
                     <div class="card-body">

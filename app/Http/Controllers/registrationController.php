@@ -62,10 +62,10 @@ class registrationController extends Controller
             'age' => $credentials['age'],
             'password' => Hash::make($credentials['password'])
         ]);
-
+        
         Auth::login($user);
-
-        return view('dashboard');
+        // return view('dashboard');
+        return to_route('login.index');
     }
 
     /**

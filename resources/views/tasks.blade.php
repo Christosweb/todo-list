@@ -23,12 +23,6 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search"> -->
-        <!-- <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Sign out</a>
-      </div>
-    </div> -->
     </header>
 
     <f class="container-fluid">
@@ -65,6 +59,24 @@
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+                 <!-- modal -->
+ <div class="modal"  id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="status"></h5>
+      </div>
+      <div class="modal-body">
+        <p class="text-capitalize"  id="message"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  id="delete">YES</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+         <!-- modal end -->
                 @foreach ($tasks as $task)
                 <div class="card bg-info mt-3">
                     <div class="card-body">
@@ -75,7 +87,7 @@
                             <button class="btn btn-warning me-2 edit"><a class="link-dark text-decoration-none"
                                     href="{{route('edit_tasks.getEdit', $task->id)}}">Edit</a></button>
                             <button class="btn btn-danger delete"
-                                data-delete="{{route('delete', $task->id)}}">Delete</button>
+                                data-delete="{{route('deleteWarning', $task->id)}}">Delete</button>
                         </div>
                     </div>
                 </div>

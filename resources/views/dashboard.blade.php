@@ -60,7 +60,7 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
 
                 <!-- modal -->
-                <div class="modal bg-light" tabindex="-1" id="modal">
+                <div class="modal"  id="modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

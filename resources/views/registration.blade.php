@@ -54,7 +54,7 @@
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">sign up</button>
-    
+    <a href="{{ route('login.index')}}">Alredy have an account? log in</a>
   </form>
 </main>
 </body>
