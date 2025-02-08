@@ -19,7 +19,13 @@
     <div class="{{ session('error') ?'d-flex text-danger' : 'd-none'}} ">{{ session('error')}}</div>
   
     <div class="form-floating mb-3">
-      <input type="email" class="form-control" name="email" id="email" value="{{ $errors->any() ? old('email'):null}}" placeholder="email">
+      <input type="email"
+       class="form-control"
+        name="email" 
+        id="email"
+        value="{{ $errors->any() ? old('email'):null}}" 
+        placeholder="email"
+        >
       <label for="floatingInput">Email address</label>
       <small class="text-danger">{{$errors->first('email')}}</small>
     </div>
